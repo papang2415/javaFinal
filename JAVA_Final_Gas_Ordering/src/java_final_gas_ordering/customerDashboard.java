@@ -37,7 +37,7 @@ public final class customerDashboard extends javax.swing.JFrame {
             try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                 Statement stmt = con.createStatement();
 
-                ResultSet datas = stmt.executeQuery("SELECT * FROM `gasdb`");
+                ResultSet datas = stmt.executeQuery("SELECT * FROM `gasData`");
                 while (datas.next()) {
                     count = 1;
                     petronTableModel.addRow(new Object[]{datas.getString("Type"), datas.getString("Quantity") + " pc(s)", "Php " + datas.getString("Price") + ".00"});
@@ -56,7 +56,7 @@ public final class customerDashboard extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver");
             try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                 Statement stmt2 = con.createStatement();
-                ResultSet orderData = stmt2.executeQuery("SELECT * FROM `order` WHERE `orderFormFullName`='" + fullName + "'");
+                ResultSet orderData = stmt2.executeQuery("SELECT * FROM `orderData` WHERE `orderFormFullName`='" + fullName + "'");
 
                 while (orderData.next()) {
                     orderCount = 0;
@@ -856,7 +856,7 @@ public final class customerDashboard extends javax.swing.JFrame {
             try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                 Statement stmt = con.createStatement();
 
-                ResultSet orderData = stmt.executeQuery("SELECT * FROM `order` WHERE `orderFormFullName`='" + fullName + "'");
+                ResultSet orderData = stmt.executeQuery("SELECT * FROM `orderData` WHERE `orderFormFullName`='" + fullName + "'");
                 while (orderData.next()) {
                     count = 1;
                     transactionTableModel.removeRow(count);
@@ -921,7 +921,7 @@ public final class customerDashboard extends javax.swing.JFrame {
                 String typeTank = (String) this.orderTypeTank.getSelectedItem();
                 try (Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                     Statement stmt = con.createStatement();
-                    String query1 = "INSERT INTO `order`(`orderFormFullName`,`orderFormContact`,`orderFormAddress`,`orderFormDate`,`orderFormTankType`, "
+                    String query1 = "INSERT INTO `orderData`(`orderFormFullName`,`orderFormContact`,`orderFormAddress`,`orderFormDate`,`orderFormTankType`, "
                             + "`orderFormQuantity`,`orderFormTotal`,`orderFormCash`,`orderFormChange`) "
                             + "VALUES ('" + this.orderFullName.getText() + "','" + this.orderContact.getText() + "',"
                             + "'" + this.orderAddress.getText() + "','" + myDateObj.format(orderDate) + "','" + this.orderTypeTank.getSelectedItem() + "',"
@@ -930,18 +930,18 @@ public final class customerDashboard extends javax.swing.JFrame {
                     stmt.executeUpdate(query1);
 
                     int count;
-                    ResultSet data = stmt.executeQuery("SELECT * FROM `gasdb`  WHERE Type = '" + typeTank + "'");
+                    ResultSet data = stmt.executeQuery("SELECT * FROM `gasData`  WHERE Type = '" + typeTank + "'");
                     if (data.next()) {
                         int qnty = Integer.parseInt(data.getString("Quantity")) - Integer.parseInt(this.orderQuantity.getText());
                         System.out.println(typeTank);
                         System.out.println(data.getString("Quantity"));
                         System.out.println(qnty);
                         String newQnty = Integer.toString(qnty);
-                        String query2 = "UPDATE `gasdb` SET `Quantity`='" + newQnty + "' WHERE Type = '" + typeTank + "'";
+                        String query2 = "UPDATE `gasData` SET `Quantity`='" + newQnty + "' WHERE Type = '" + typeTank + "'";
                         stmt.executeUpdate(query2);
                     }
 
-                    ResultSet newData = stmt.executeQuery("SELECT * FROM `gasdb`");
+                    ResultSet newData = stmt.executeQuery("SELECT * FROM `gasData`");
                     while (newData.next()) {
                         count = 0;
                         petronTableModel.removeRow(count);
@@ -975,7 +975,7 @@ public final class customerDashboard extends javax.swing.JFrame {
                     try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                         Statement stmt = con.createStatement();
 
-                        ResultSet datas = stmt.executeQuery("SELECT * FROM `gasdb` WHERE `Type` = '50 kilos'");
+                        ResultSet datas = stmt.executeQuery("SELECT * FROM `gasData` WHERE `Type` = '50 kilos'");
                         if (datas.next()) {
                             price = datas.getInt("Price");
                         }
@@ -991,7 +991,7 @@ public final class customerDashboard extends javax.swing.JFrame {
                     try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                         Statement stmt = con.createStatement();
 
-                        ResultSet datas = stmt.executeQuery("SELECT * FROM `gasdb` WHERE `Type` = '22 kilos'");
+                        ResultSet datas = stmt.executeQuery("SELECT * FROM `gasData` WHERE `Type` = '22 kilos'");
                         if (datas.next()) {
 
                             price = datas.getInt("Price");
@@ -1008,7 +1008,7 @@ public final class customerDashboard extends javax.swing.JFrame {
                     try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                         Statement stmt = con.createStatement();
 
-                        ResultSet datas = stmt.executeQuery("SELECT * FROM `gasdb` WHERE `Type` = '11 kilos'");
+                        ResultSet datas = stmt.executeQuery("SELECT * FROM `gasData` WHERE `Type` = '11 kilos'");
                         if (datas.next()) {
 
                             price = datas.getInt("Price");
@@ -1025,7 +1025,7 @@ public final class customerDashboard extends javax.swing.JFrame {
                     try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                         Statement stmt = con.createStatement();
 
-                        ResultSet datas = stmt.executeQuery("SELECT * FROM `gasdb` WHERE `Type` = '7 kilos'");
+                        ResultSet datas = stmt.executeQuery("SELECT * FROM `gasData` WHERE `Type` = '7 kilos'");
                         if (datas.next()) {
 
                             price = datas.getInt("Price");
@@ -1042,7 +1042,7 @@ public final class customerDashboard extends javax.swing.JFrame {
                     try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                         Statement stmt = con.createStatement();
 
-                        ResultSet datas = stmt.executeQuery("SELECT * FROM `gasdb` WHERE `Type` = '2.7 kilos'");
+                        ResultSet datas = stmt.executeQuery("SELECT * FROM `gasData` WHERE `Type` = '2.7 kilos'");
                         if (datas.next()) {
 
                             price = datas.getInt("Price");

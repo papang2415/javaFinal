@@ -37,7 +37,7 @@ public final class admin extends javax.swing.JFrame {
                 Statement stmt = con.createStatement();
                 Statement stmt1 = con.createStatement();
 
-                ResultSet gasData = stmt.executeQuery("SELECT * FROM `gasdb`");
+                ResultSet gasData = stmt.executeQuery("SELECT * FROM `gasData`");
                 while (gasData.next()) {
                     count = 1;
                     petronTableModel.addRow(new Object[]{gasData.getString("Type"), gasData.getString("Quantity"), gasData.getString("Price")});
@@ -56,7 +56,7 @@ public final class admin extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver");
             try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                 Statement stmt1 = con.createStatement();
-                ResultSet userDatas = stmt1.executeQuery("SELECT * FROM `user`");
+                ResultSet userDatas = stmt1.executeQuery("SELECT * FROM `userData`");
                 while (userDatas.next()) {
                     userCount = 1;
                     userTableModel.addRow(new Object[]{userDatas.getInt("userID"), userDatas.getString("fullName"), userDatas.getString("address"), userDatas.getString("gender"), userDatas.getString("userName")});
@@ -77,7 +77,7 @@ public final class admin extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver");
             try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                 Statement stmt2 = con.createStatement();
-                ResultSet orderData = stmt2.executeQuery("SELECT * FROM `order`");
+                ResultSet orderData = stmt2.executeQuery("SELECT * FROM `orderData`");
                 while (orderData.next()) {
                     orderCount = 1;
                     orderTableModel.addRow(new Object[]{orderData.getInt("orderFormID"), orderData.getString("orderFormFullName"), orderData.getString("orderFormContact"), orderData.getString("orderFormAddress"), orderData.getString("orderFormDate"), orderData.getString("orderFormTankType"),
@@ -102,7 +102,7 @@ public final class admin extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver");
             try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                 Statement stmt = con.createStatement();
-                ResultSet dateData = stmt.executeQuery("SELECT DISTINCT `orderFormDate` FROM `order`");
+                ResultSet dateData = stmt.executeQuery("SELECT DISTINCT `orderFormDate` FROM `orderData`");
                 while (dateData.next()) {
                     dateCount = 1;
                     transactionDateTableModel.addRow(new Object[]{dateData.getString("orderFormDate")});
@@ -906,7 +906,7 @@ public final class admin extends javax.swing.JFrame {
                 Class.forName("com.mysql.jdbc.Driver");
                 try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                     Statement stmt = con.createStatement();
-                    String query = "DELETE FROM user WHERE userID= " + userid + "";
+                    String query = "DELETE FROM userData WHERE userID= " + userid + "";
                     stmt.execute(query);
                     con.close();
                     JOptionPane.showMessageDialog(null, "Successfully Deleted.", "Alert", JOptionPane.INFORMATION_MESSAGE);
@@ -939,12 +939,12 @@ public final class admin extends javax.swing.JFrame {
                 try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                     Statement stmt = con.createStatement();
                     Statement stmt1 = con.createStatement();
-                    String query = "UPDATE `gasdb` SET`Quantity`='" + this.gasQuantityField.getText() + "',`Price`='" + this.gasPriceField.getText() + "' WHERE  Type = '" + petronType + "'";
+                    String query = "UPDATE `gasData` SET`Quantity`='" + this.gasQuantityField.getText() + "',`Price`='" + this.gasPriceField.getText() + "' WHERE  Type = '" + petronType + "'";
                     stmt.execute(query);
                     gasQuantityField.setText(null);
                     gasPriceField.setText(null);
                     gasTypeField.setText(null);
-                    ResultSet datas = stmt1.executeQuery("SELECT * FROM `gasdb`");
+                    ResultSet datas = stmt1.executeQuery("SELECT * FROM `gasData`");
                     while (datas.next()) {
                         count = 0;
                         petronTableModel.removeRow(count);
@@ -990,9 +990,9 @@ public final class admin extends javax.swing.JFrame {
                     Statement stmt2 = con.createStatement();
                     int userID = (int) orderTableModel.getValueAt(transactionTable.getSelectedRow(), 0);
                     String date = (String) orderTableModel.getValueAt(transactionTable.getSelectedRow(), 4);
-                    String query = "DELETE FROM `order` WHERE orderFormID = " + userID + "";
+                    String query = "DELETE FROM `orderData` WHERE orderFormID = " + userID + "";
                     stmt1.execute(query);
-                    ResultSet orderData = stmt2.executeQuery("SELECT * FROM `order`");
+                    ResultSet orderData = stmt2.executeQuery("SELECT * FROM `orderData`");
                     while (orderData.next()) {
                         orderCount = 1;
                         quantity += Integer.parseInt(orderData.getString("orderFormQuantity"));
@@ -1006,7 +1006,7 @@ public final class admin extends javax.swing.JFrame {
                     orderTableModel.removeRow(transactionTable.getSelectedRow());
 
                     int dateCount;
-                    ResultSet dateData = stmt.executeQuery("SELECT DISTINCT `orderFormDate` FROM `order`");
+                    ResultSet dateData = stmt.executeQuery("SELECT DISTINCT `orderFormDate` FROM `orderData`");
                     while (dateData.next()) {
                         dateCount = 0;
                         transactionDateTableModel.removeRow(dateCount);
@@ -1069,7 +1069,7 @@ public final class admin extends javax.swing.JFrame {
             try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                 Statement stmt = con.createStatement();
 
-                ResultSet datas = stmt.executeQuery("SELECT * FROM `gasdb`");
+                ResultSet datas = stmt.executeQuery("SELECT * FROM `gasData`");
                 while (datas.next()) {
                     count = 1;
                     petronTableModel.removeRow(count);
@@ -1111,7 +1111,7 @@ public final class admin extends javax.swing.JFrame {
                 Class.forName("com.mysql.jdbc.Driver");
                 try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_final", "root", "")) {
                     Statement stmt2 = con.createStatement();
-                    ResultSet orderData = stmt2.executeQuery("SELECT * FROM `order` WHERE `orderFormDate` = '" + transactionDate + "'");
+                    ResultSet orderData = stmt2.executeQuery("SELECT * FROM `orderData` WHERE `orderFormDate` = '" + transactionDate + "'");
                     while (orderData.next()) {
                         orderCount = 1;
 
