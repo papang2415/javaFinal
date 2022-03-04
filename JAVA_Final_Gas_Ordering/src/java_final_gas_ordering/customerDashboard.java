@@ -849,6 +849,7 @@ public final class customerDashboard extends javax.swing.JFrame {
         orderPannel.setVisible(false);
 
         DefaultTableModel transactionTableModel = (DefaultTableModel) transactionTable.getModel();
+        transactionTableModel.setRowCount(0);
 
         int count = 0;
         try {
@@ -859,7 +860,6 @@ public final class customerDashboard extends javax.swing.JFrame {
                 ResultSet orderData = stmt.executeQuery("SELECT * FROM `orderData` WHERE `orderFormFullName`='" + fullName + "'");
                 while (orderData.next()) {
                     count = 1;
-                    transactionTableModel.removeRow(count);
                     transactionTableModel.addRow(new Object[]{orderData.getString("orderFormFullName"), orderData.getString("orderFormAddress"), orderData.getString("orderFormDate"), orderData.getString("orderFormTankType"),
                         orderData.getString("orderFormQuantity") + " pc(s)", "Php " + orderData.getString("orderFormTotal") + ".00", "Php " + orderData.getString("orderFormCash") + ".00", "Php " + orderData.getString("orderFormChange") + ".00"});
                 }

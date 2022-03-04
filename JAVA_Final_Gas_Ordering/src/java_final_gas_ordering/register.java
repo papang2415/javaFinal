@@ -13,6 +13,7 @@ public class register extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         fullName = new javax.swing.JTextField();
         address = new javax.swing.JTextField();
@@ -25,13 +26,15 @@ public class register extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         registerBtn = new javax.swing.JButton();
         resetBtn = new javax.swing.JButton();
         gender = new javax.swing.JComboBox<>();
         confirmPassword = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
+
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
+        jLabel7.setText("Order Gas System");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,31 +69,21 @@ public class register extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 255, 255));
 
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
-        jLabel7.setText("Order Gas System");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(142, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(28, 28, 28))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(114, 114, 114))))
+                .addContainerGap(607, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(28, 28, 28))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(36, 36, 36))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         registerBtn.setBackground(new java.awt.Color(0, 0, 255));
